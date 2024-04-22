@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaRegArrowAltCircleUp, FaTimes } from 'react-icons/fa';
+import { FaRegArrowAltCircleUp, FaCamera } from 'react-icons/fa';
+import Alert from '@mui/material/Alert';
 import './App.css';
 
 function App() {
@@ -172,6 +173,18 @@ function App() {
     }
   };
 
+  const handleCapture = () => {
+    const canvas = canvasRef.current;
+    const dataURL = canvas.toDataURL();
+    
+    const downloadLink = document.createElement('a');
+    downloadLink.href = dataURL;
+    downloadLink.download = 'mandelbrot_'+ 1*(startX + (endX - startX) / 2).toFixed(8) + 
+    '_' + -1*(startY + (endY - startY) / 2).toFixed(8) + '_' +  (endX - startX)/4
+     +'.png'; 
+    downloadLink.click();
+  };
+
   const reset = (e) => {
     setStartX(-2);
     setStartY(-2);
@@ -181,11 +194,26 @@ function App() {
 
   return (
     <div className="app">
-      {show ? <p className="instructions">Click and drag on the canvas to zoom in on a specific area.<button className="reset-button" onClick={() => setShow(false)}><FaTimes />
-      </button></p> : ""}
-      <p className="reset">{(endX - startX)/4 < 1 ? 
+      {
+        show ? 
+      <Alert className='instructions' onClose={() => setShow(false)} severity='info'>
+        Click and drag on the canvas to zoom in on a specific area.
+      </Alert> :
+        ""
+      }
+      <p >{(endX - startX)/4 < 1 ? 
+      <div>
+        <p className="screenshot">
+        <button className="screenshot-button"  onClick={handleCapture}>
+        <FaCamera />
+        <span className='tooltip'>Capture Screenshot</span>
+      </button>
+      </p>
+      <p className="reset">
         <button className="reset-button" onClick={reset}><FaRegArrowAltCircleUp /><span className='tooltip'>Reset Frame</span>
         </button> 
+        </p>
+        </div>
         : ""}</p>
       <p className="title">
         <p>Mandelbrot Set Visualization</p>

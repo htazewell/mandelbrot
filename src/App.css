@@ -8,11 +8,13 @@
   position: fixed; 
   top: 0;
   left: 0;
-  width: 25%;
-  height: 15%;
-  text-align: center;
+  width: 21%;
+  height: 16%;
+  text-align: left;
   color: white;
   margin: 0;
+  margin-top: 5px;
+  margin-left: 5px;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
@@ -29,6 +31,7 @@
   margin-top: 10%;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .reset {
@@ -40,11 +43,28 @@
   text-align: center;
   color: white;
   margin: 0;
+  margin-top: 5px;
+  margin-right: 5px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
+.screenshot {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 2%;
+  height: 2%;
+  text-align: center;
+  color: white;
+  margin: 0;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
 
 .canvas-container {
   position: relative;
@@ -88,4 +108,23 @@
   font-size: 12px;
   padding-left: 15px;
   white-space: nowrap;
+}
+
+
+.screenshot-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.screenshot-button svg {
+  fill: white;
+}
+
+.screenshot-button:hover .tooltip {
+  display: inline-block;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%)
 }
