@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { FaRegArrowAltCircleUp } from 'react-icons/fa';
 import './App.css';
 
 function App() {
   const canvasRef = useRef(null);
+  const ctx = useRef(null);
   const startPos = useRef({ x: 0, y: 0 });
   const endPos = useRef({ x: 0, y: 0 });
   const [frameSize, setFrameSize] = useState({ width: 1, height: 1 });
@@ -84,11 +86,12 @@ function App() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    ctx.current = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
+    const iter = (endX - startX)/4 < 1 ? 1000 : 100
 
-    mandelbrot(startX, startY, endX, endY, 1000, ctx, width, height); // Default Mandelbrot set
+    mandelbrot(startX, startY, endX, endY, iter, ctx.current, width, height); // Default Mandelbrot set
   }, [startX, startY, endX, endY]);
 
   const handleMouseDown = (e) => {
@@ -139,22 +142,34 @@ function App() {
     setMousePosition({ x, y });
   };
 
+  const reset = (e) => {
+    setStartX(-2);
+    setStartY(-2);
+    setEndX(2);
+    setEndY(2);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Mandelbrot Set Visualization
+    <div className="app">
+
+        <p className="title">
+          <p>Mandelbrot Set Visualization {(endX - startX)/4 < 1 ? 
+          <button className="reset-button" onClick={reset}><FaRegArrowAltCircleUp /><span className='tooltip'>Reset Frame</span>
+          </button> 
+          : ""}</p>
+          <p>Location: ({1*(startX + (endX - startX) / 2).toFixed(8)}, {-1*(startY + (endY - startY) / 2).toFixed(8)})</p>
+          <p>Scale: {(endX - startX)/4}</p>
         </p>
+        <div className="canvas-container">
         <canvas
           ref={canvasRef}
-          width={800}
-          height={800}
+          width={window.innerWidth}
+          height={window.innerHeight}
           style={{ border: '1px solid black' }}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
-        ></canvas>
-      </header>
+        ></canvas></div>
     </div>
   );
 }

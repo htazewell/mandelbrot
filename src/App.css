@@ -1,38 +1,60 @@
-.App {
+.app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  position: fixed; /* Position the title relative to the viewport */
+  bottom: 0; /* Align the title to the bottom */
+  left: 0; /* Align the title to the left */
+  width: 30%;
+  height: 15%;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 1;
 }
 
-.App-link {
-  color: #61dafb;
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent; /* Transparent canvas */
+  border: none; /* Remove border */
+}
+
+.reset-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.reset-button svg {
+  fill: white; /* Change the color of the icon to black */
+}
+
+.reset-button:hover .tooltip {
+  display: inline-block;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  padding-left: 15px;
+  white-space: nowrap;
 }
