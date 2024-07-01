@@ -1,3 +1,6 @@
+# You can check this out here
+[Mandelbrot Visualizer](https://main.d8d0vmhrl9e1u.amplifyapp.com/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

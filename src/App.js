@@ -58,8 +58,8 @@ function App() {
         } else {
           const color = getColor(iter);
           data[pixelPos] = color[0];
-          data[pixelPos + 1] = color[1];
-          data[pixelPos + 2] = color[2];
+          data[pixelPos + 1] = color[1] + (15 * width) / 256;
+          data[pixelPos + 2] = color[2] + (10 * width) / 256;
           data[pixelPos + 3] = 255;
         }
       }
